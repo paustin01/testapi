@@ -1,0 +1,73 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# paustin01test
+
+A simple API showing choices between the best guitars ever made.
+
+## Guitars Collection [/guitars]
+
+### List All Questions [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Best guitar?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "PRS CE-24",
+                        "votes": 2048
+                    }, {
+                        "choice": "Fender Stratocaster",
+                        "votes": 1024
+                    }, {
+                        "choice": "Gibson Les Paul",
+                        "votes": 512
+                    }
+                ]
+            }
+        ]
+
+### Create a New Question [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ Request (application/json)
+
+        {
+            "question": "Favourite guitar?",
+            "choices": [
+                "PRS",
+                "Strat",
+                "Les Paul"
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /guitars/2
+
+    + Body
+
+            {
+                "question": "Favourite guitar?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "PRS",
+                        "votes": 0
+                    }, {
+                        "choice": "Strat",
+                        "votes": 0
+                    }, {
+                        "choice": "Les Paul",
+                        "votes": 0
+                    }
+                ]
+            }
